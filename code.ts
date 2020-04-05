@@ -61,7 +61,7 @@ figma.ui.onmessage = async (numbers) => {
       label.resizeWithoutConstraints(wordboxwidth, wordboxheight)
       label.fills = [{ type: 'SOLID', color: {r: 1, g: 1, b: 1} }]
       label.fontName = { family: "Roboto", style: "Black" }
-      label.characters = choice(dungeonwords).toUpperCase()
+      label.characters = choice(basewords).toUpperCase()
       label.fontSize = 12
       //label.fontName = { family: "Roboto", style: "Black" }
       label.textAlignHorizontal = 'CENTER'
