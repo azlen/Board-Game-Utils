@@ -52,13 +52,21 @@ figma.ui.onmessage = (numbers) => __awaiter(this, void 0, void 0, function* () {
             const label = figma.createText();
             //frame.appendChild(label)
             label.x = wordboxleft;
+            console.log('a');
             label.y = wordboxtop;
+            console.log('b');
             label.resizeWithoutConstraints(wordboxwidth, wordboxheight);
+            console.log('c');
             label.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }];
-            label.characters = 'TEST';
+            console.log('d');
+            label.fontName = { family: "Roboto", style: "Black" };
+            label.characters = "test";
+            console.log('e');
             label.fontSize = 30;
+            console.log('f');
             //label.fontName = { family: "Roboto", style: "Black" }
             label.textAlignHorizontal = 'CENTER';
+            console.log('g');
             label.textAlignVertical = 'CENTER';
             label.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
         }
