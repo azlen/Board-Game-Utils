@@ -1,0 +1,11 @@
+virus
+school
+hourglass
+park
+time
+life
+death
+light
+dark
+package
+population
