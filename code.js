@@ -55,7 +55,7 @@ figma.ui.onmessage = (numbers) => __awaiter(this, void 0, void 0, function* () {
             label.y = wordboxtop;
             label.resizeWithoutConstraints(wordboxwidth, wordboxheight);
             label.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }];
-            label.characters = 'test'.toUpperCase();
+            label.characters = 'TEST';
             label.fontSize = 12;
             label.fontName = { family: "Roboto", style: "Black" };
             label.textAlignHorizontal = 'CENTER';
