@@ -11,7 +11,7 @@ figma.showUI(__html__);
 figma.ui.onmessage = (numbers) => __awaiter(this, void 0, void 0, function* () {
     // Roboto Regular is the font that objects will be created with by default in
     // Figma. We need to wait for fonts to load before creating text using them.
-    yield figma.loadFontAsync({ family: "Roboto", style: "Regular" });
+    yield figma.loadFontAsync({ family: "Roboto", style: "Black" });
     // create codenames layout
     let padding = 10;
     let cardwidth = 120;
@@ -24,17 +24,38 @@ figma.ui.onmessage = (numbers) => __awaiter(this, void 0, void 0, function* () {
             card.x = left;
             card.y = top;
             card.resizeWithoutConstraints(cardwidth, cardheight);
-            card.fills = [{ type: 'SOLID', color: { r: 227 / 255, g: 207 / 255, b: 182 / 255 } }];
+            //card.fills = [{ type: 'SOLID', color: {r: 227/255, g: 207/255, b: 182/255} }]
+            card.fills = [{ type: 'SOLID', color: { r: 0x1B / 255, g: 0x1B / 255, b: 0x1B / 255 } }];
             card.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+            card.cornerRadius = 5;
+            let innerBorderOffset = 5;
+            let innerBorder = figma.createRectangle();
+            innerBorder.x = left + innerBorderOffset;
+            innerBorder.y = top + innerBorderOffset;
+            innerBorder.resizeWithoutConstraints(cardwidth - innerBorderOffset * 2, cardheight - innerBorderOffset * 2);
+            innerBorder.strokes = [{ type: 'SOLID', color: { r: 0x2E / 255, g: 0x2E / 255, b: 0x2E / 255 } }];
+            innerBorder.strokeWeight = 2;
+            innerBorder.strokeAlign = 'INSIDE';
+            innerBorder.cornerRadius = 4;
+            let wordboxleft = left + innerBorderOffset * 2;
+            let wordboxtop = top + innerBorderOffset * 2;
+            let wordboxwidth = cardwidth - innerBorderOffset * 4;
+            let wordboxheight = cardheight - innerBorderOffset * 4;
+            let wordbox = figma.createRectangle();
+            wordbox.x = wordboxleft;
+            wordbox.y = wordboxtop;
+            wordbox.resizeWithoutConstraints(wordboxwidth, wordboxheight);
+            wordbox.fills = [{ type: 'SOLID', color: { r: 0x2E / 255, g: 0x2E / 255, b: 0x2E / 255 } }];
+            wordbox.cornerRadius = 1;
             // The label
             const label = figma.createText();
             //frame.appendChild(label)
-            label.x = left;
-            label.y = top;
-            label.resizeWithoutConstraints(cardwidth, cardheight);
-            label.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 } }];
-            label.characters = 'test';
-            label.fontSize = 30;
+            label.x = wordboxleft;
+            label.y = wordboxtop;
+            label.resizeWithoutConstraints(wordboxwidth, wordboxheight);
+            label.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }];
+            label.characters = 'test'.toUpperCase();
+            label.fontSize = 12;
             label.textAlignHorizontal = 'CENTER';
             label.textAlignVertical = 'CENTER';
             label.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
