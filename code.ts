@@ -7,7 +7,7 @@ figma.ui.onmessage = async (numbers) => {
   
 
   // create codenames layout
-  let padding = 10;
+  let padding = 8;
   let cardwidth = 120;
   let cardheight = 75;
   for (let x = 0; x < 5; x++) {
@@ -55,8 +55,8 @@ figma.ui.onmessage = async (numbers) => {
       label.resizeWithoutConstraints(wordboxwidth, wordboxheight)
       label.fills = [{ type: 'SOLID', color: {r: 1, g: 1, b: 1} }]
       label.fontName = { family: "Roboto", style: "Black" }
-      label.characters = "test"
-      label.fontSize = 30
+      label.characters = "test".toUpperCase()
+      label.fontSize = 12
       //label.fontName = { family: "Roboto", style: "Black" }
       label.textAlignHorizontal = 'CENTER'
       label.textAlignVertical = 'CENTER'
