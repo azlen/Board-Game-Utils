@@ -29,16 +29,17 @@ figma.ui.onmessage = async (numbers) => {
       innerBorder.x = left + innerBorderOffset
       innerBorder.y = top  + innerBorderOffset
       innerBorder.resizeWithoutConstraints(cardwidth - innerBorderOffset*2, cardheight - innerBorderOffset*2)
+      innerBorder.fills = []
       innerBorder.strokes = [{ type: 'SOLID', color: {r: 0x2E/255, g: 0x2E/255, b: 0x2E/255} }]
       innerBorder.strokeWeight = 2
       innerBorder.strokeAlign = 'INSIDE'
       innerBorder.cornerRadius = 4
 
-      let wordboxleft = left + innerBorderOffset*2;
-      let wordboxtop  = top  + innerBorderOffset*2;
       let wordboxwidth = cardwidth - innerBorderOffset*4;
-      let wordboxheight = cardheight - innerBorderOffset*4;
-
+      let wordboxheight = (cardheight - innerBorderOffset*4) / 2;
+      let wordboxleft = left + innerBorderOffset*2;
+      let wordboxtop  = top  + innerBorderOffset*2 + wordboxheight;
+      
       let wordbox = figma.createRectangle()
       wordbox.x = wordboxleft
       wordbox.y = wordboxtop
@@ -55,6 +56,7 @@ figma.ui.onmessage = async (numbers) => {
       label.fills = [{ type: 'SOLID', color: {r: 1, g: 1, b: 1} }]
       label.characters = 'test'.toUpperCase()
       label.fontSize = 12
+      label.fontName = { family: "Roboto", style: "Black" }
       label.textAlignHorizontal = 'CENTER'
       label.textAlignVertical = 'CENTER'
       label.constraints = {horizontal: 'STRETCH', vertical: 'STRETCH'}
