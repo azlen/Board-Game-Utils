@@ -6,10 +6,36 @@ figma.ui.onmessage = async (numbers) => {
   await figma.loadFontAsync({ family: "Roboto", style: "Regular" })
 
   // create codenames layout
+  let padding = 10;
+  let cardwidth = 120;
+  let cardheight = 75;
   for (let x = 0; x < 5; x++) {
+    for (let y = 0; y < 5; y++) {
+      let left = x * (cardwidth  + padding)
+      let top  = y * (cardheight + padding)
 
+      let card = figma.createRectangle()
+      card.x = left
+      card.y = top
+      card.resizeWithoutConstraints(cardwidth, cardheight)
+      card.fills = [{ type: 'SOLID', color: {r: 227/255, g: 207/255, b: 182/255} }]
+      card.constraints = {horizontal: 'STRETCH', vertical: 'STRETCH'}
+
+      // The label
+      const label = figma.createText()
+      //frame.appendChild(label)
+      label.x = left
+      label.y = top
+      label.resizeWithoutConstraints(cardwidth, cardheight)
+      label.fills = [{ type: 'SOLID', color: {r: 0, g: 0, b: 0} }]
+      label.characters = 'test'
+      label.fontSize = 30
+      label.textAlignHorizontal = 'CENTER'
+      label.textAlignVertical = 'CENTER'
+      label.constraints = {horizontal: 'STRETCH', vertical: 'STRETCH'}
+    }
   }
-  figma.createRectangle()
+  
 
   /*const frameWidth = 800
   const frameHeight = 600
