@@ -90,6 +90,8 @@ figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
         card.cornerRadius = 5;
         // 0 = RED, 1 = BLUE
         let firstTeam = Math.round(Math.random());
+        let teams = [RED, BLUE];
+        card.strokes = [{ type: 'SOLID', color: teams[Number(firstTeam)] }];
         let colors = [].concat(BLACK, new Array(8 + (1 - firstTeam)).fill(RED), new Array(8 + firstTeam).fill(BLUE), new Array(7).fill(BEIGE));
         let itemsToGroup = [card];
         for (let x = 0; x < 5; x++) {

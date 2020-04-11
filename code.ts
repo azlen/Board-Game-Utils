@@ -96,6 +96,9 @@ figma.ui.onmessage = async (message) => {
     // 0 = RED, 1 = BLUE
     let firstTeam = Math.round(Math.random())
 
+    let teams = [RED, BLUE];
+    card.strokes = [{ type: 'SOLID', color: teams[Number(firstTeam)] }]
+
     let colors = [].concat(
       BLACK,
       new Array(8 + (1-firstTeam)).fill(RED),
@@ -133,7 +136,7 @@ figma.ui.onmessage = async (message) => {
           label.fills = [{ type: 'SOLID', color: WHITE }]
           label.fontName = { family: "Roboto", style: "Black" }
           label.characters = 'X';
-          label.fontSize = 8
+          label.fontSize = 8;
           //label.fontName = { family: "Roboto", style: "Black" }
           label.textAlignHorizontal = 'CENTER'
           label.textAlignVertical = 'CENTER'
