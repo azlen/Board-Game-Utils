@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="https://static.figma.com/api/figma-extension-api-0.0.1.css">
 <h2>Codenames</h2>
-<p><select>
+<p><select id="select">
   <option value="base">Base Codenames</option>
   <option value="d&d">Dungeons & Dragons</option>
 </select></p>
-<p><button onclick="run('codenames_board')">Generate Codenames Board</button></p>
+<p><button onclick="run('codenames_board', {'wordlist': select.value})">Generate Codenames Board</button></p>
 <p><button onclick="run('codenames_spycard')">Generate Spymaster Card</button></p>
 <script>
   /*document.querySelector('#generate-codenames').onclick = function() {

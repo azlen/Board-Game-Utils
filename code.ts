@@ -76,8 +76,8 @@ figma.ui.onmessage = async (message) => {
     }
   }
 
-  let RED = {r: 0xE8/255, b: 0x2B/255, g: 0x2B/255};
-  let BLUE = {r: 0x2B/255, b: 0x77/255, g: 0xE8/255};
+  let RED = {r: 0xE8/255, g: 0x2B/255, b: 0x2B/255};
+  let BLUE = {r: 0x2B/255, g: 0x77/255, b: 0xE8/255};
   let DARKGRAY = {r: 0x1B/255, g: 0x1B/255, b: 0x1B/255};
   let BLACK = {r: 0, g: 0, b: 0};
   let BEIGE = {r: 227/255, g: 207/255, b: 182/255};
@@ -133,7 +133,7 @@ figma.ui.onmessage = async (message) => {
           label.fills = [{ type: 'SOLID', color: WHITE }]
           label.fontName = { family: "Roboto", style: "Black" }
           label.characters = 'X';
-          label.fontSize = 4
+          label.fontSize = 8
           //label.fontName = { family: "Roboto", style: "Black" }
           label.textAlignHorizontal = 'CENTER'
           label.textAlignVertical = 'CENTER'
