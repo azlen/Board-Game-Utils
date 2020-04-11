@@ -4,11 +4,16 @@
   <option value="base">Base Codenames</option>
   <option value="d&d">Dungeons & Dragons</option>
 </select></p>
-<p><button id="generate-codenames">Generate Codenames Board</button></p>
+<p><button onclick="run('codenames_board')">Generate Codenames Board</button></p>
+<p><button onclick="run('codenames_spycard')">Generate Spymaster Card</button></p>
 <script>
-  document.querySelector('#generate-codenames').onclick = function() {
+  /*document.querySelector('#generate-codenames').onclick = function() {
     parent.postMessage({ pluginMessage: {
       command: 'codenames-board',
     } }, '*')
+  }*/
+
+  function run(type, data) {
+    parent.postMessage({ pluginMessage: Object.assign({type}, data) }, '*')
   }
 </script>

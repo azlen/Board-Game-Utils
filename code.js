@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 figma.showUI(__html__);
-figma.ui.onmessage = (numbers) => __awaiter(this, void 0, void 0, function* () {
+figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
     // Roboto Regular is the font that objects will be created with by default in
     // Figma. We need to wait for fonts to load before creating text using them.
     yield figma.loadFontAsync({ family: "Roboto", style: "Black" });
@@ -22,54 +22,119 @@ figma.ui.onmessage = (numbers) => __awaiter(this, void 0, void 0, function* () {
     let padding = 8;
     let cardwidth = 120;
     let cardheight = 75;
-    for (let x = 0; x < 5; x++) {
-        for (let y = 0; y < 5; y++) {
-            let left = center.x + x * (cardwidth + padding);
-            let top = center.y + y * (cardheight + padding);
-            let card = figma.createRectangle();
-            card.x = left;
-            card.y = top;
-            card.resizeWithoutConstraints(cardwidth, cardheight);
-            //card.fills = [{ type: 'SOLID', color: {r: 227/255, g: 207/255, b: 182/255} }]
-            card.fills = [{ type: 'SOLID', color: { r: 0x1B / 255, g: 0x1B / 255, b: 0x1B / 255 } }];
-            card.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
-            card.cornerRadius = 5;
-            let innerBorderOffset = 5;
-            let innerBorder = figma.createRectangle();
-            innerBorder.x = left + innerBorderOffset;
-            innerBorder.y = top + innerBorderOffset;
-            innerBorder.resizeWithoutConstraints(cardwidth - innerBorderOffset * 2, cardheight - innerBorderOffset * 2);
-            innerBorder.fills = [];
-            innerBorder.strokes = [{ type: 'SOLID', color: { r: 0x2E / 255, g: 0x2E / 255, b: 0x2E / 255 } }];
-            innerBorder.strokeWeight = 2;
-            innerBorder.strokeAlign = 'INSIDE';
-            innerBorder.cornerRadius = 4;
-            let wordboxwidth = cardwidth - innerBorderOffset * 4;
-            let wordboxheight = (cardheight - innerBorderOffset * 4) / 2;
-            let wordboxleft = left + innerBorderOffset * 2;
-            let wordboxtop = top + innerBorderOffset * 2 + wordboxheight;
-            let wordbox = figma.createRectangle();
-            wordbox.x = wordboxleft;
-            wordbox.y = wordboxtop;
-            wordbox.resizeWithoutConstraints(wordboxwidth, wordboxheight);
-            wordbox.fills = [{ type: 'SOLID', color: { r: 0x2E / 255, g: 0x2E / 255, b: 0x2E / 255 } }];
-            wordbox.cornerRadius = 1;
-            // The label
-            const label = figma.createText();
-            //frame.appendChild(label)
-            label.x = wordboxleft;
-            label.y = wordboxtop;
-            label.resizeWithoutConstraints(wordboxwidth, wordboxheight);
-            label.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }];
-            label.fontName = { family: "Roboto", style: "Black" };
-            label.characters = choice(basewords).toUpperCase();
-            label.fontSize = 12;
-            //label.fontName = { family: "Roboto", style: "Black" }
-            label.textAlignHorizontal = 'CENTER';
-            label.textAlignVertical = 'CENTER';
-            label.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
-            figma.group([card, innerBorder, wordbox, label], card.parent);
+    if (message.type == 'codenames_board') {
+        for (let x = 0; x < 5; x++) {
+            for (let y = 0; y < 5; y++) {
+                let left = center.x + x * (cardwidth + padding);
+                let top = center.y + y * (cardheight + padding);
+                let card = figma.createRectangle();
+                card.x = left;
+                card.y = top;
+                card.resizeWithoutConstraints(cardwidth, cardheight);
+                //card.fills = [{ type: 'SOLID', color: {r: 227/255, g: 207/255, b: 182/255} }]
+                card.fills = [{ type: 'SOLID', color: { r: 0x1B / 255, g: 0x1B / 255, b: 0x1B / 255 } }];
+                card.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+                card.cornerRadius = 5;
+                let innerBorderOffset = 5;
+                let innerBorder = figma.createRectangle();
+                innerBorder.x = left + innerBorderOffset;
+                innerBorder.y = top + innerBorderOffset;
+                innerBorder.resizeWithoutConstraints(cardwidth - innerBorderOffset * 2, cardheight - innerBorderOffset * 2);
+                innerBorder.fills = [];
+                innerBorder.strokes = [{ type: 'SOLID', color: { r: 0x2E / 255, g: 0x2E / 255, b: 0x2E / 255 } }];
+                innerBorder.strokeWeight = 2;
+                innerBorder.strokeAlign = 'INSIDE';
+                innerBorder.cornerRadius = 4;
+                let wordboxwidth = cardwidth - innerBorderOffset * 4;
+                let wordboxheight = (cardheight - innerBorderOffset * 4) / 2;
+                let wordboxleft = left + innerBorderOffset * 2;
+                let wordboxtop = top + innerBorderOffset * 2 + wordboxheight;
+                let wordbox = figma.createRectangle();
+                wordbox.x = wordboxleft;
+                wordbox.y = wordboxtop;
+                wordbox.resizeWithoutConstraints(wordboxwidth, wordboxheight);
+                wordbox.fills = [{ type: 'SOLID', color: { r: 0x2E / 255, g: 0x2E / 255, b: 0x2E / 255 } }];
+                wordbox.cornerRadius = 1;
+                // The label
+                const label = figma.createText();
+                //frame.appendChild(label)
+                label.x = wordboxleft;
+                label.y = wordboxtop;
+                label.resizeWithoutConstraints(wordboxwidth, wordboxheight);
+                label.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }];
+                label.fontName = { family: "Roboto", style: "Black" };
+                label.characters = choice(basewords).toUpperCase();
+                label.fontSize = 12;
+                //label.fontName = { family: "Roboto", style: "Black" }
+                label.textAlignHorizontal = 'CENTER';
+                label.textAlignVertical = 'CENTER';
+                label.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+                figma.group([card, innerBorder, wordbox, label], card.parent);
+            }
         }
+    }
+    let RED = { r: 0xE8 / 255, b: 0x2B / 255, g: 0x2B / 255 };
+    let BLUE = { r: 0x2B / 255, b: 0x77 / 255, g: 0xE8 / 255 };
+    let DARKGRAY = { r: 0x1B / 255, g: 0x1B / 255, b: 0x1B / 255 };
+    let BLACK = { r: 0, g: 0, b: 0 };
+    let BEIGE = { r: 227 / 255, g: 207 / 255, b: 182 / 255 };
+    let WHITE = { r: 1, g: 1, b: 1 };
+    if (message.type == 'codenames_spycard') {
+        let card = figma.createRectangle();
+        card.x = center.x;
+        card.y = center.y;
+        card.resizeWithoutConstraints(cardwidth, cardwidth);
+        //card.fills = [{ type: 'SOLID', color: {r: 227/255, g: 207/255, b: 182/255} }]
+        card.fills = [{ type: 'SOLID', color: DARKGRAY }];
+        card.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+        card.cornerRadius = 5;
+        // 0 = RED, 1 = BLUE
+        let firstTeam = Math.round(Math.random());
+        let colors = [].concat(BLACK, new Array(8 + (1 - firstTeam)).fill(RED), new Array(8 + firstTeam).fill(BLUE), new Array(7).fill(BEIGE));
+        let itemsToGroup = [card];
+        for (let x = 0; x < 5; x++) {
+            for (let y = 0; y < 5; y++) {
+                let color = choice(colors);
+                colors.splice(colors.indexOf(color), 1);
+                let tilesize = (cardwidth - 20) / 5 - 2;
+                let left = center.x + 10 + (cardwidth - 20) / 5 * x;
+                let top = center.y + 10 + (cardwidth - 20) / 5 * y;
+                let tile = figma.createRectangle();
+                tile.x = left;
+                tile.y = top;
+                tile.resizeWithoutConstraints(tilesize, tilesize);
+                //card.fills = [{ type: 'SOLID', color: {r: 227/255, g: 207/255, b: 182/255} }]
+                tile.fills = [{ type: 'SOLID', color }];
+                tile.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+                tile.cornerRadius = 1;
+                if (color == BLACK) {
+                    const label = figma.createText();
+                    //frame.appendChild(label)
+                    label.x = left;
+                    label.y = top;
+                    label.resizeWithoutConstraints(tilesize, tilesize);
+                    label.fills = [{ type: 'SOLID', color: WHITE }];
+                    label.fontName = { family: "Roboto", style: "Black" };
+                    label.characters = 'X';
+                    label.fontSize = 4;
+                    //label.fontName = { family: "Roboto", style: "Black" }
+                    label.textAlignHorizontal = 'CENTER';
+                    label.textAlignVertical = 'CENTER';
+                    label.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+                    itemsToGroup.push(label);
+                }
+                itemsToGroup.push(tile);
+            }
+        }
+        figma.group(itemsToGroup, card.parent);
+        let overlay = figma.createRectangle();
+        overlay.x = center.x;
+        overlay.y = center.y;
+        overlay.resizeWithoutConstraints(cardwidth, cardwidth);
+        //card.fills = [{ type: 'SOLID', color: {r: 227/255, g: 207/255, b: 182/255} }]
+        overlay.fills = [{ type: 'SOLID', color: BLACK }];
+        overlay.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+        overlay.cornerRadius = 5;
     }
     /*const frameWidth = 800
     const frameHeight = 600
