@@ -115,7 +115,7 @@ figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
                 tile.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
                 tile.cornerRadius = 1;
                 if (color == BLACK) {
-                    const label = figma.createText();
+                    let label = figma.createText();
                     //frame.appendChild(label)
                     label.x = left;
                     label.y = top;

@@ -134,7 +134,7 @@ figma.ui.onmessage = async (message) => {
         tile.cornerRadius = 1;
 
         if(color == BLACK) {
-          const label = figma.createText()
+          let label = figma.createText()
           //frame.appendChild(label)
           label.x = left
           label.y = top
