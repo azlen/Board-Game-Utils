@@ -13,7 +13,7 @@ figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
     // Figma. We need to wait for fonts to load before creating text using them.
     yield figma.loadFontAsync({ family: "Roboto", style: "Black" });
     function choice(A) {
-        return A[Math.floor(Math.random() * (A.length + 1))];
+        return A[Math.floor(Math.random() * (A.length))];
     }
     let center = figma.viewport.center;
     // create codenames layout

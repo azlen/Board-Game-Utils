@@ -6,7 +6,7 @@ figma.ui.onmessage = async (message) => {
   await figma.loadFontAsync({ family: "Roboto", style: "Black" })
   
   function choice(A) {
-    return A[Math.floor(Math.random() * (A.length + 1))]
+    return A[Math.floor(Math.random() * (A.length))]
   }
 
   let center = figma.viewport.center;
