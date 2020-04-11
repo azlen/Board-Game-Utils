@@ -65,11 +65,15 @@ figma.ui.onmessage = async (message) => {
         label.fills = [{ type: 'SOLID', color: {r: 1, g: 1, b: 1} }]
         label.fontName = { family: "Roboto", style: "Black" }
 
+        let wordlist = basewords;
         if(message.wordlist == 'base') {
-          label.characters = choice(basewords).toUpperCase()
+          wordlist = basewords;
         } else if(message.wordlist == 'd&d' ) {
-          label.characters = choice(dungeonwords).toUpperCase()
+          wordlist = dungeonwords;
         }
+        let word = choice(wordlist);
+        wordlist.splice(wordlist.indexOf(word), 1);
+        label.characters = word.toUpperCase();
         
         label.fontSize = 12
         //label.fontName = { family: "Roboto", style: "Black" }
