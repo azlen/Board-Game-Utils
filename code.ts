@@ -64,7 +64,13 @@ figma.ui.onmessage = async (message) => {
         label.resizeWithoutConstraints(wordboxwidth, wordboxheight)
         label.fills = [{ type: 'SOLID', color: {r: 1, g: 1, b: 1} }]
         label.fontName = { family: "Roboto", style: "Black" }
-        label.characters = choice(basewords).toUpperCase()
+
+        if(message.wordlist == 'base') {
+          label.characters = choice(basewords).toUpperCase()
+        } else if(message.wordlist == 'd&d' ) {
+          label.characters = choice(dungeonwords).toUpperCase()
+        }
+        
         label.fontSize = 12
         //label.fontName = { family: "Roboto", style: "Black" }
         label.textAlignHorizontal = 'CENTER'
@@ -231,5 +237,5 @@ figma.ui.onmessage = async (message) => {
     label.constraints = {horizontal: 'STRETCH', vertical: 'STRETCH'}
   }*/
 
-  figma.closePlugin()
+  //figma.closePlugin()
 }
