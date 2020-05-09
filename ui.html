@@ -28,8 +28,8 @@
   }
 
   function runBanana() {
-    run('bananagrams', { 'tiles': ['1'] })
     let n = Number(grab.value)
+    run('bananagrams', { 'tiles': [n] })
     let chosen = []
     for(let i = 0; i < n; i++) {
       if(tiles.length > 0) {
