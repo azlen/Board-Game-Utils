@@ -148,7 +148,6 @@ figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
         overlay.cornerRadius = 5;
     }
     if (message.type == 'bananagrams') {
-        createBananagramTile(center.x, center.y, 'A');
         message.tiles.forEach(function (letter) {
             createBananagramTile(center.x, center.y, letter);
         });

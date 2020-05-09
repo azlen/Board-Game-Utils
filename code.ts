@@ -172,7 +172,6 @@ figma.ui.onmessage = async (message) => {
   }
 
   if(message.type == 'bananagrams') {
-    createBananagramTile(center.x, center.y, 'A')
     message.tiles.forEach(function(letter) {
       createBananagramTile(center.x, center.y, letter)
     })

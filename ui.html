@@ -29,9 +29,10 @@
 
   function runBanana() {
     let n = Number(document.querySelector('#numberoftiles').value)
-    run('bananagrams', { 'tiles': [String(n)] })
+    
     let chosen = []
     for(let i = 0; i < n; i++) {
+      run('bananagrams', { 'tiles': [String(i)] })
       if(tiles.length > 0) {
         let c = choice(tiles)
         tiles = tiles.splice(tiles.indexOf(c), 1)
