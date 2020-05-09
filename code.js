@@ -148,7 +148,9 @@ figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
         overlay.cornerRadius = 5;
     }
     if (message.type == 'bananagrams') {
-        createBananagramTile(center.x, center.y);
+        message.tiles.forEach(function (letter) {
+            createBananagramTile(center.x, center.y, letter);
+        });
     }
     /*const frameWidth = 800
     const frameHeight = 600
@@ -218,7 +220,7 @@ figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
     //figma.closePlugin()
 });
 let bananagramTileSize = 50;
-function createBananagramTile(x, y) {
+function createBananagramTile(x, y, letter) {
     let tile = figma.createRectangle();
     tile.x = x;
     tile.y = y;
@@ -234,7 +236,7 @@ function createBananagramTile(x, y) {
     label.resizeWithoutConstraints(bananagramTileSize, bananagramTileSize);
     label.fills = [{ type: 'SOLID', color: BLACK }];
     label.fontName = { family: "Roboto", style: "Black" };
-    label.characters = 'X';
+    label.characters = letter.toUpperCase();
     label.fontSize = 20;
     //label.fontName = { family: "Roboto", style: "Black" }
     label.textAlignHorizontal = 'CENTER';
