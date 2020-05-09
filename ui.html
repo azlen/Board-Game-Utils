@@ -8,7 +8,7 @@
 <p><button onclick="run('codenames_spycard')">Generate Spymaster Card</button></p>
 <h2>Bananagrams</h2>
 <p>tiles left: <span id="tilesleft"></span></p>
-<p><input type="number" id="grab"><button onclick="runBanana()">Bananagrams</button></p>
+<p><input type="number" id="grab" value="0"><button onclick="runBanana()">Bananagrams</button></p>
 <p><button onclick="resetBanana()">reset</button></p>
 <script>
   /*document.querySelector('#generate-codenames').onclick = function() {
@@ -33,7 +33,7 @@
     for(let i = 0; i < n; i++) {
       if(tiles.length > 0) {
         let c = choice(tiles)
-        tiles.splice(tiles.indexOf(c), 1)
+        tiles = tiles.splice(tiles.indexOf(c), 1)
         chosen.push(c)
       }
     }
