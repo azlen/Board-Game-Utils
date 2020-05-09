@@ -7,8 +7,9 @@
 <p><button onclick="run('codenames_board', {'wordlist': select.value})">Generate Codenames Board</button></p>
 <p><button onclick="run('codenames_spycard')">Generate Spymaster Card</button></p>
 <h2>Bananagrams</h2>
-<p>tiles left: <span class="tilesleft"></span></p>
-<p><input type="number" class="grab"><button onclick="runBanana()">Bananagrams</button></p>
+<p>tiles left: <span id="tilesleft"></span></p>
+<p><input type="number" id="grab"><button onclick="runBanana()">Bananagrams</button></p>
+<p><button onclick="resetBanana()">reset</button></p>
 <script>
   /*document.querySelector('#generate-codenames').onclick = function() {
     parent.postMessage({ pluginMessage: {
@@ -37,13 +38,15 @@
       }
     }
     run('bananagrams', { 'tiles': chosen })
-    document.querySelector('.tilesleft').textContent = tiles.length
+    tilesleft.textContent = tiles.length
   }
 
   function resetBanana() {
     tiles='aaaaaaaaaaaaabbbcccddddddeeeeeeeeeeeeeeeeeefffgggghhhiiiiiiiiiiiijjkklllllmmmnnnnnnnnooooooooooopppqqrrrrrrrrrsssssstttttttttuuuuuuvvvwwwxxyyyzz'
-    document.querySelector('.tilesleft').textContent = tiles.length
+    tilesleft.textContent = tiles.length
   }
+
+  resetBanana()
 
   resetBanana
 </script>
