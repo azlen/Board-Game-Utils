@@ -29,7 +29,7 @@
 
   function runBanana() {
     let n = Number(document.querySelector('#numberoftiles').value)
-    run('bananagrams', { 'tiles': [n] })
+    run('bananagrams', { 'tiles': [String(n)] })
     let chosen = []
     for(let i = 0; i < n; i++) {
       if(tiles.length > 0) {
