@@ -8,6 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 figma.showUI(__html__);
+let RED = { r: 0xE8 / 255, g: 0x2B / 255, b: 0x2B / 255 };
+let BLUE = { r: 0x2B / 255, g: 0x77 / 255, b: 0xE8 / 255 };
+let DARKGRAY = { r: 0x1B / 255, g: 0x1B / 255, b: 0x1B / 255 };
+let BLACK = { r: 0, g: 0, b: 0 };
+let BEIGE = { r: 227 / 255, g: 207 / 255, b: 182 / 255 };
+let WHITE = { r: 1, g: 1, b: 1 };
 figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
     // Roboto Regular is the font that objects will be created with by default in
     // Figma. We need to wait for fonts to load before creating text using them.
@@ -82,12 +88,6 @@ figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
             }
         }
     }
-    let RED = { r: 0xE8 / 255, g: 0x2B / 255, b: 0x2B / 255 };
-    let BLUE = { r: 0x2B / 255, g: 0x77 / 255, b: 0xE8 / 255 };
-    let DARKGRAY = { r: 0x1B / 255, g: 0x1B / 255, b: 0x1B / 255 };
-    let BLACK = { r: 0, g: 0, b: 0 };
-    let BEIGE = { r: 227 / 255, g: 207 / 255, b: 182 / 255 };
-    let WHITE = { r: 1, g: 1, b: 1 };
     if (message.type == 'codenames_spycard') {
         let card = figma.createRectangle();
         card.x = center.x;
@@ -146,6 +146,9 @@ figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
         overlay.fills = [{ type: 'SOLID', color: BLACK }];
         overlay.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
         overlay.cornerRadius = 5;
+    }
+    if (message.type == 'bananagrams') {
+        createBananagramTile(center.x, center.y);
     }
     /*const frameWidth = 800
     const frameHeight = 600
@@ -214,3 +217,28 @@ figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
     }*/
     //figma.closePlugin()
 });
+let bananagramTileSize = 50;
+function createBananagramTile(x, y) {
+    let tile = figma.createRectangle();
+    tile.x = x;
+    tile.y = y;
+    tile.resizeWithoutConstraints(bananagramTileSize, bananagramTileSize);
+    //card.fills = [{ type: 'SOLID', color: {r: 227/255, g: 207/255, b: 182/255} }]
+    tile.fills = [{ type: 'SOLID', color: BEIGE }];
+    tile.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+    tile.cornerRadius = 1;
+    let label = figma.createText();
+    //frame.appendChild(label)
+    label.x = x;
+    label.y = y;
+    label.resizeWithoutConstraints(bananagramTileSize, bananagramTileSize);
+    label.fills = [{ type: 'SOLID', color: BLACK }];
+    label.fontName = { family: "Roboto", style: "Black" };
+    label.characters = 'X';
+    label.fontSize = 20;
+    //label.fontName = { family: "Roboto", style: "Black" }
+    label.textAlignHorizontal = 'CENTER';
+    label.textAlignVertical = 'CENTER';
+    label.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+    return figma.group([tile, label], tile.parent);
+}
