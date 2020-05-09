@@ -149,7 +149,7 @@ figma.ui.onmessage = (message) => __awaiter(this, void 0, void 0, function* () {
     }
     if (message.type == 'bananagrams') {
         message.tiles.forEach(function (letter) {
-            createBananagramTile(center.x, center.y, letter);
+            createBananagramTile(center.x + Math.round(Math.random() * 100 - 50), center.y + Math.round(Math.random() * 100 - 50), letter);
         });
     }
     /*const frameWidth = 800
